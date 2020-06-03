@@ -1,0 +1,10 @@
+body {
+  font-family: 'K2D', sans-serif; }
+
+table {
+  border-collapse: collapse; }
+  table td, table th {
+    border: 1px solid black;
+    padding: 5px; }
+
+/*# sourceMappingURL=style.css.map */
