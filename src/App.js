@@ -28,6 +28,9 @@ class App extends React.Component {
       let companiesIncomes = [];
       for(let i=0; i<companies.length; i++) { //companies.length
         let incomes = await getIncomes(companies[i].id);
+        incomes.incomes.forEach(income=>{
+          income.date = new Date(income.date)
+        })
         companiesIncomes.push(incomes);
       }
 
@@ -50,7 +53,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <>
         {
