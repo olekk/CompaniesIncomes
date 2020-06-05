@@ -67,7 +67,7 @@ class Table extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="table">
                 {this.state.details!==0 &&
                     <Details 
                         companyData={this.props.companies.filter(x => x.id===this.state.details)[0]}

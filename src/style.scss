@@ -5,6 +5,8 @@ body {
 #root {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding-top: 10vh;
 }
 
 #search {
@@ -25,6 +27,10 @@ table {
             box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.5);
         }
     }
+    th:nth-child(1) { width: 50px; }
+    th:nth-child(2) { width: 300px; }
+    th:nth-child(3) { width: 150px; }
+    th:nth-child(4) { width: 120px; }
 }
 
 button {
@@ -33,6 +39,7 @@ button {
     border: 1px solid black;
     width: 30px;
     cursor: pointer;
+    font-size: 14px;
     &.currPage {
         background-color: black;
         color: white;
@@ -41,12 +48,30 @@ button {
 
 #details {
     position: absolute;
-    padding: 20px;
-    width: 80vw;
     margin: 0 auto;
     background-color: white;
     border: 2px solid black;
     line-height: 2em;
+    z-index: 10;
+    
+    left: 50%;
+    top: 90px;
+    transform: translate(-50%, 0);
+
+    display: flex;
+
+    main {
+        padding: 20px;
+        min-width: 320px;
+        span {
+            font-size: 90%;
+            border-top: 1px dashed black;
+            width: 100%;
+            display: inline-block;
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
     select {
         &#endDate option:first-child {display: none;}
     }
@@ -57,11 +82,67 @@ button {
         top: 0;
         margin: 2px;
     }
-
-    main, canvas {
-        float: left;
-    }
     canvas {
         border: 1px solid black;
+    }
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    .pagination {
+        align-self: center;
+        margin-top: 10px;
+    }
+}
+
+@media(max-width: 630px) {
+    body {
+        font-size: 85%;
+    }
+    #search input {
+        width: 70vw;
+        display: inline-block;
+    }
+
+}
+
+@media(max-width: 870px) {
+
+    #details {
+        flex-direction: column;
+        top: 10px;
+        
+        canvas {
+            width: 500px;
+            height: 400px;
+        }
+    }
+}
+
+@media(max-width: 505px) {
+
+    #details {
+        flex-direction: column;
+        top: 10px;
+        
+        canvas {
+            width: 400px;
+            height: 320px;
+        }
+    }
+}
+
+
+@media(max-width: 380px) {
+    #details canvas {
+        width: 350px;
+        height: 300px;
+    }
+    .pagination {
+        display: flex;
+        button{
+            transform: scale(0.8);
+        }
     }
 }

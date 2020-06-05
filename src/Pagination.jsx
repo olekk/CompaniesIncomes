@@ -9,7 +9,7 @@ class Pagination extends React.Component {
     }
     makeButtons() {
         let butts = [];
-        for(let i=this.state.range; i<this.state.range+16; i++) {
+        for(let i=this.state.range; i<this.state.range+10; i++) {
             butts.push(
                 <button key={i} 
                     onClick={()=>this.props.handlePageChange(i)} 
@@ -21,13 +21,13 @@ class Pagination extends React.Component {
     }
 
     scroll(dir) {
-        if(this.state.range+dir>=0 && this.state.range+dir+16<=this.props.pageQty) 
+        if(this.state.range+dir>=0 && this.state.range+dir+10<=this.props.pageQty) 
             this.setState({range: this.state.range+dir});
     }
     
     render() {
         return (
-            <div>
+            <div className="pagination">
                 <button onClick={()=>this.scroll(-1)}>{"<"}</button>
                 {this.makeButtons()}
                 <button onClick={()=>this.scroll(1)}>{">"}</button>

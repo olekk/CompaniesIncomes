@@ -5,9 +5,7 @@ import App from './App';
 import 'react-app-polyfill/stable'; //for ms edge
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 

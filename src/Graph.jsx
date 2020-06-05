@@ -27,24 +27,65 @@ class Graph extends React.Component {
             }
         });
         monthlyIncome.push({month: prevMonth, total: monthSum});
-        console.log(monthlyIncome);
 
-        
-        ctx.moveTo(20, 0);
-        ctx.lineTo(20, this.props.height-20);
+        ctx.strokeStyle="black";
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(50, 0);
+        ctx.lineTo(50, this.props.height-20);
         ctx.lineTo(this.props.width, this.props.height-20);
         ctx.stroke();
-        
-        ctx.font = "14px Sans-serif";
-        ctx.fillText("$/T", 1, this.props.height-5)
-        
-        let maxIncome = Math.max(monthlyIncome.map(x=>x.total));
-        
-        while(maxIncome>=0) {
-            // let s=10;
+        ctx.closePath();
 
+        ctx.font = "14px Sans-serif";
+        ctx.fillText("$ / T", 10, this.props.height-5)
+        
+        let maxIncome = Math.max(...monthlyIncome.map(x=>x.total));
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; 
+        
+        let i=1;
+        while(i>=0) {
+            ctx.beginPath();
+            let axis=(Math.abs(i-1)+.03)*(this.props.height-40);
+            ctx.moveTo(50, axis);
+            ctx.lineTo(this.props.width, axis);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.fillText(Math.floor(i*maxIncome), 5, (Math.abs(i-1)+.03)*(this.props.height-40));
+            i-=0.1;
         }
 
+
+
+        i=0;
+        while(i<monthlyIncome.length) {
+            monthlyIncome[i].x = (i/(monthlyIncome.length+1))*this.props.width+50;
+            
+            ctx.beginPath();
+            ctx.moveTo(monthlyIncome[i].x, 0);
+            ctx.lineTo(monthlyIncome[i].x, this.props.height-20);
+            ctx.stroke();
+            ctx.closePath();
+            i++;
+        }
+
+        ctx.strokeStyle="#FF0000";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(50, Math.abs((this.props.height*(monthlyIncome[0].total/maxIncome))-this.props.height));
+
+        
+        i=0;
+        while(i<monthlyIncome.length) {
+            ctx.fillText(months[monthlyIncome[i].month], monthlyIncome[i].x, this.props.height-5);
+
+            ctx.lineTo(monthlyIncome[i].x, Math.abs((this.props.height*(monthlyIncome[i].total/maxIncome))-this.props.height))
+
+            i++;
+        }
+        ctx.lineTo(this.props.width, Math.abs((this.props.height*(monthlyIncome[0].total/maxIncome))-this.props.height))
+        ctx.stroke();
+        ctx.closePath();
       }
 
     render() {

@@ -15,19 +15,16 @@ class Details extends React.Component {
         let details = [];
         let companyData = this.props.companyData;
         let companyIncomes = this.props.companyIncomes;
-        
         companyIncomes = companyIncomes.sort((a, b)=>a.date - b.date);
 
         let makeOptions = (isStart) => {
-            let options = [];
             let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            companyIncomes.filter(o=>isStart? o.date<this.props.end : o.date>this.props.start )
-            .map(o=>o.date).forEach((date, i) => {
-                options.push(
-                    <option key={i} value={date}>{date.getDate()+" "+months[date.getMonth()]+" "+date.getFullYear()}</option>
-                );
+            return companyIncomes.filter(o=>isStart? o.date<this.props.end : o.date>this.props.start )
+            .map((o, i)=>{
+                return (
+                    <option key={i} value={o.date}>{o.date.getDate()+" "+months[o.date.getMonth()]+" "+o.date.getFullYear()}</option>
+                )
             })
-            return options;
         }
         details.push(
             <>
@@ -36,9 +33,9 @@ class Details extends React.Component {
                 City: {companyData.city} <br/>
                 Last month income: {
                     companyIncomes.filter(o=>o.date.getMonth() === companyIncomes[companyIncomes.length-1].date.getMonth() && o.date.getFullYear() === companyIncomes[companyIncomes.length-1].date.getFullYear())
-                    .map(o=>Number(o.value)).reduce((acc, cur)=>acc+cur)
+                    .map(o=>Number(o.value)).reduce((acc, cur)=>acc+cur).toFixed(2)
                 } <br/>
-                Set time range for data below: <br/>
+                <span>Set time range for data below:</span>  <br/>
                 From:{` `}
                 <select name="startDate" id="startDate" onChange={e=>this.setStartDate(e)} value={this.props.start}>
                     {makeOptions(true)}
@@ -65,8 +62,8 @@ class Details extends React.Component {
     render() {
         return (
                 <div id="details">
+                        <button onClick={()=>this.props.close()}> <span role="img" aria-label="close">&#x2716;</span></button>
                     <main>
-                        <button onClick={()=>this.props.close()}> <span role="img" aria-label="close">&#x274C;</span></button>
                         {this.makeDetails()}
                     </main>
                     <Graph

@@ -3,7 +3,9 @@ body {
 
 #root {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh; }
 
 #search input {
   width: 500px; }
@@ -16,25 +18,47 @@ table {
   table tbody tr:hover {
     cursor: pointer;
     box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.5); }
+  table th:nth-child(1) {
+    width: 50px; }
+  table th:nth-child(2) {
+    width: 300px; }
+  table th:nth-child(3) {
+    width: 150px; }
+  table th:nth-child(4) {
+    width: 120px; }
 
 button {
   background-color: white;
   border-radius: 3px;
   border: 1px solid black;
   width: 30px;
-  cursor: pointer; }
+  cursor: pointer;
+  font-size: 14px; }
   button.currPage {
     background-color: black;
     color: white; }
 
 #details {
   position: absolute;
-  padding: 20px;
-  width: 80vw;
   margin: 0 auto;
   background-color: white;
   border: 2px solid black;
-  line-height: 2em; }
+  line-height: 2em;
+  z-index: 10;
+  left: 50%;
+  top: 90px;
+  transform: translate(-50%, 0);
+  display: flex; }
+  #details main {
+    padding: 20px;
+    min-width: 320px; }
+    #details main span {
+      font-size: 90%;
+      border-top: 1px dashed black;
+      width: 100%;
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center; }
   #details select#endDate option:first-child {
     display: none; }
   #details button {
@@ -42,9 +66,45 @@ button {
     right: 0;
     top: 0;
     margin: 2px; }
-  #details main, #details canvas {
-    float: left; }
   #details canvas {
     border: 1px solid black; }
+
+.table {
+  display: flex;
+  flex-direction: column; }
+  .table .pagination {
+    align-self: center;
+    margin-top: 10px; }
+
+@media (max-width: 630px) {
+  body {
+    font-size: 85%; }
+
+  #search input {
+    width: 70vw;
+    display: inline-block; } }
+@media (max-width: 870px) {
+  #details {
+    flex-direction: column;
+    top: 10px; }
+    #details canvas {
+      width: 500px;
+      height: 400px; } }
+@media (max-width: 505px) {
+  #details {
+    flex-direction: column;
+    top: 10px; }
+    #details canvas {
+      width: 400px;
+      height: 320px; } }
+@media (max-width: 380px) {
+  #details canvas {
+    width: 350px;
+    height: 300px; }
+
+  .pagination {
+    display: flex; }
+    .pagination button {
+      transform: scale(0.8); } }
 
 /*# sourceMappingURL=style.css.map */
