@@ -13,7 +13,6 @@ class Table extends React.Component {
     }
 
     visibleSortedCos() {
-        console.log(this.props.companies)
         let companies = this.props.companies
         .map(inc => ({id: inc.id, name: inc.name, city: inc.city, total: inc.incomes
             .map(o=>Number(o.value))
