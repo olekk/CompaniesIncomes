@@ -5,7 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10vh; }
+  padding-top: 10px; }
 
 #search input {
   width: 500px; }
@@ -15,9 +15,11 @@ table {
   table td, table th {
     border: 1px solid black;
     padding: 5px; }
-  table tbody tr:hover {
-    cursor: pointer;
-    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.5); }
+  table tbody tr {
+    height: 55px; }
+    table tbody tr:hover {
+      cursor: pointer;
+      box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.5); }
   table th:nth-child(1) {
     width: 50px; }
   table th:nth-child(2) {
@@ -75,6 +77,8 @@ button {
   .table .pagination {
     align-self: center;
     margin-top: 10px; }
+    .table .pagination button:first-child, .table .pagination button:last-child {
+      margin: 0 5px; }
 
 @media (max-width: 630px) {
   body {

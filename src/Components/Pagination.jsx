@@ -9,7 +9,7 @@ class Pagination extends React.Component {
     }
     makeButtons() {
         let butts = [];
-        for(let i=this.state.range; i<this.state.range+10; i++) {
+        for(let i=this.state.range; i<this.state.range+(this.props.pageQty>10 ? 10 : this.props.pageQty); i++) {
             butts.push(
                 <button key={i} 
                     onClick={()=>this.props.handlePageChange(i)} 

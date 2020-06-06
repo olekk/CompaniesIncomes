@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10vh;
+    padding-top: 10px;
 }
 
 #search {
@@ -22,6 +22,7 @@ table {
         padding: 5px;
     }
     tbody tr {
+        height: 55px;
         &:hover {
             cursor: pointer;
             box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.5);
@@ -93,6 +94,9 @@ button {
     .pagination {
         align-self: center;
         margin-top: 10px;
+        button:first-child, button:last-child {
+            margin: 0 5px;
+        }
     }
 }
 

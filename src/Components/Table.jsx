@@ -13,26 +13,20 @@ class Table extends React.Component {
     }
 
     visibleSortedCos() {
-        let incomes = this.props.companiesIncomes
-        .map(inc => ({id: inc.id, total: inc.incomes
+        console.log(this.props.companies)
+        let companies = this.props.companies
+        .map(inc => ({id: inc.id, name: inc.name, city: inc.city, total: inc.incomes
             .map(o=>Number(o.value))
             .reduce((acc, cur)=>acc+cur)}))
         .sort((a, b) => (a.total < b.total)?1:-1);
 
-        let rows = [];
-        incomes.forEach((el)=> {
-            let companyData = this.props.companies.filter(e=>e.id===el.id)
-            if(companyData.length>0) 
-                rows.push({...companyData[0], ...el});
-        }, this);
+        companies=companies.filter(el=>el.name.search(this.props.searchWord)!==-1);
+        this.avaliableRows = companies.length;
 
-        rows=rows.filter(el=>el.name.search(this.props.searchWord)!==-1);
-        this.avaliableRows = rows.length;
-
-        rows=rows.slice(this.props.page*10, this.props.page*10+10);
+        companies=companies.slice(this.props.page*10, this.props.page*10+10);
 
         let trs = [];
-        rows.forEach((el, i) => {
+        companies.forEach((el, i) => {
             trs.push(
                 <tr key={i+1} onClick={()=>this.details(el.id)}>
                     <td>{el.id}</td>
@@ -48,7 +42,7 @@ class Table extends React.Component {
     details(_id) {
         let companyIncomes = [];
         if(_id) {
-            companyIncomes = this.props.companiesIncomes.filter(x => x.id===_id)[0].incomes.sort((a, b)=>a.date - b.date);
+            companyIncomes = this.props.companies.filter(x => x.id===_id)[0].incomes.sort((a, b)=>a.date - b.date);
         }
 
         this.setState({
@@ -71,7 +65,6 @@ class Table extends React.Component {
                 {this.state.details!==0 &&
                     <Details 
                         companyData={this.props.companies.filter(x => x.id===this.state.details)[0]}
-                        companyIncomes={this.props.companiesIncomes.filter(x => x.id===this.state.details)[0].incomes}
                         id={this.state.details}
                         start={this.state.start}
                         end={this.state.end}

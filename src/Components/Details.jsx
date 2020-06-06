@@ -14,8 +14,7 @@ class Details extends React.Component {
     makeDetails() {
         let details = [];
         let companyData = this.props.companyData;
-        let companyIncomes = this.props.companyIncomes;
-        companyIncomes = companyIncomes.sort((a, b)=>a.date - b.date);
+        let companyIncomes = companyData.incomes.sort((a, b)=>a.date - b.date);
 
         let makeOptions = (isStart) => {
             let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -67,7 +66,7 @@ class Details extends React.Component {
                         {this.makeDetails()}
                     </main>
                     <Graph
-                        incomesData={this.props.companyIncomes}
+                        incomesData={this.props.companyData.incomes}
                         width={500}
                         height={500}
                     />

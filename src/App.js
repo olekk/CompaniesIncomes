@@ -1,11 +1,10 @@
 import React from 'react';
-import Table from './Table.jsx'
-import Search from './Search.jsx'
+import Table from './Components/Table.jsx'
+import Search from './Components/Search.jsx'
 
 class App extends React.Component {
   state = {
     companies: [],
-    companiesIncomes: [],
     page: 0,
     searchWord: ""
   }
@@ -25,21 +24,19 @@ class App extends React.Component {
     
     let makeState = async () => {
       let companies = await getCompanies();
-      let companiesIncomes = [];
       for(let i=0; i<companies.length; i++) { //companies.length
         let incomes = await getIncomes(companies[i].id);
         incomes.incomes.forEach(income=>{
           income.date = new Date(income.date)
         })
-        companiesIncomes.push(incomes);
+        companies[i].incomes = incomes.incomes;
       }
 
-      return {companies: companies, companiesIncomes: companiesIncomes};
+      return {companies: companies};
     }
 
     this.setState({
-      companies: [], 
-      companiesIncomes: []
+      companies: []
     }, () => makeState().then((newState) => this.setState(newState)));
 
   }
@@ -57,7 +54,7 @@ class App extends React.Component {
     return (
       <>
         {
-          this.state.companiesIncomes.length ?
+          this.state.companies.length ?
           <>
             <Search 
               handleSearch={(searchWord) => this.handleSearch(searchWord)}
@@ -65,7 +62,6 @@ class App extends React.Component {
             />
             <Table
               companies={this.state.companies}
-              companiesIncomes={this.state.companiesIncomes}
               page={this.state.page}
               searchWord={this.state.searchWord}
               handlePageChange={(page)=>this.handlePageChange(page)}
