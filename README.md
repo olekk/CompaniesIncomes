@@ -3,6 +3,10 @@ App created in React using create-react-app tool.
 It shows informations about companies from database.
 All data is downloaded from external server.
 
+App is deployed on Heroku.
+
+[Open online app](https://companiesincomes.herokuapp.com/)
+
 ## What does it do?
 
 Companies data are shown in tables, sorted by total income in descending order. You can search companies by name. 
@@ -30,6 +34,10 @@ table of 10 companies.
 * "Search" renders text input that changes Apps state on every text modification.
 
 ## How to run app?
+
+App is deployed on Heroku.
+
+[Open online app](https://companiesincomes.herokuapp.com/)
 
 You can run it locally on your computer.
 
