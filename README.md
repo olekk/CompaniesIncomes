@@ -39,10 +39,6 @@ You have to have node.js installed.
 
 [Download node.js](https://nodejs.org/en/download/)
 
-<<<<<<< HEAD
 If it is installed (try command: `npm -v` in terminal to check), you can run 'setProject.bat' (for Windows) it installs neccesary node modules and opens a project in development build.
-=======
-If it is installed (try command: `npm -v` in terminal to check), you can run 'setProject.bat' (for Windows) or 'setProject.sh' (for Linux), it installs neccesary node modules and opens a project in development build.
->>>>>>> 0d43f113a1fa48c3daca70968c07547604e993bf
 
 To use optimized production build, type: `npm run build` and `serve -s build`
