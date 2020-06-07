@@ -14,20 +14,31 @@ Whole data are downloaded at first, to show properly sorted tables. It is stored
 
 ## How it does it?
 
-"App" component is rendering "Search" and "Table" components. 
-"Table" recieves all data, filters them and displays a 
-table of 10 companies.
-"Table" component, beside table, renders "Details" if they're trigerred and "Pagination" component.
-"Details" is recieving data from one chosen company, executes calculations and renders them and "Graph" component. 
-"Graph" component recieves just incomes from chosen company and renders HTML canvas element with drawn graph. 
-"Pagination" renders maximum of 10 items changing page and 2 buttons scrolling them.
-"Search" renders text input that changes Apps state on every text modification.
+* "App" component is rendering "Search" and "Table" components. 
 
-## How to run app
+* "Table" recieves all data, filters them and displays a 
+table of 10 companies.
+
+* "Table" component, beside table, renders "Details" if they're trigerred and "Pagination" component.
+
+* "Details" is recieving data from one chosen company, executes calculations, renders them and "Graph" component. 
+
+* "Graph" component recieves just incomes from chosen company and renders HTML canvas element with drawn graph. 
+
+* "Pagination" renders maximum of 10 buttons changing page and 2 buttons scrolling them.
+
+* "Search" renders text input that changes Apps state on every text modification.
+
+## How to run app?
 
 You can run it locally on your computer.
+
 [Download project](https://github.com/olekk/CompaniesIncomes/archive/master.zip)
+
 You have to have node.js installed.
+
 [Download node.js](https://nodejs.org/en/download/)
-If it is installed (try command: `npm -v` in terminal to check), you can run 'setProject.bat' (for Windows) or 'setProject.sh' (for Linux), it installs neccesary node modules and opens a project in development build.
-To use optimized production build type: `serve -s build`
+
+If it is installed (try command: `npm -v` in terminal to check), you can run 'setProject.bat' (for Windows) it installs neccesary node modules and opens a project in development build.
+
+To use optimized production build, type: `npm run build` and `serve -s build`
