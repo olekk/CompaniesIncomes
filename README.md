@@ -20,14 +20,14 @@ Whole data are downloaded at first, to show properly sorted tables. It is stored
 
 * "App" component is rendering "Search" and "Table" components. 
 
-* "Table" recieves all data, filters them and displays a 
+* "Table" receives all data, filters them and displays a 
 table of 10 companies.
 
 * "Table" component, beside table, renders "Details" if they're trigerred and "Pagination" component.
 
-* "Details" is recieving data from one chosen company, executes calculations, renders them and "Graph" component. 
+* "Details" is receiving data from one chosen company, executes calculations, renders them and "Graph" component. 
 
-* "Graph" component recieves just incomes from chosen company and renders HTML canvas element with drawn graph. 
+* "Graph" component receives just incomes from chosen company and renders HTML canvas element with drawn graph. 
 
 * "Pagination" renders maximum of 10 buttons changing page and 2 buttons scrolling them.
 

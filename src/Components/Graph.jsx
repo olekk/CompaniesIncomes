@@ -72,18 +72,18 @@ class Graph extends React.Component {
         ctx.strokeStyle="#FF0000";
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(50, Math.abs((this.props.height*(monthlyIncome[0].total/maxIncome))-this.props.height));
+        ctx.moveTo(50, Math.abs((this.props.height*(monthlyIncome[0].total/maxIncome))-this.props.height+20));
 
         
         i=0;
         while(i<monthlyIncome.length) {
             ctx.fillText(months[monthlyIncome[i].month], monthlyIncome[i].x, this.props.height-5);
 
-            ctx.lineTo(monthlyIncome[i].x, Math.abs((this.props.height*(monthlyIncome[i].total/maxIncome))-this.props.height))
+            ctx.lineTo(monthlyIncome[i].x, Math.abs((this.props.height*(monthlyIncome[i].total/maxIncome))-this.props.height+20))
 
             i++;
         }
-        ctx.lineTo(this.props.width, Math.abs((this.props.height*(monthlyIncome[0].total/maxIncome))-this.props.height))
+        ctx.lineTo(this.props.width, Math.abs((this.props.height*(monthlyIncome[monthlyIncome.length-1].total/maxIncome))-this.props.height+20))
         ctx.stroke();
         ctx.closePath();
       }

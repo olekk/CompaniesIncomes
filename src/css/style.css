@@ -102,8 +102,11 @@ button {
       width: 400px;
       height: 320px; } }
 @media (max-width: 380px) {
+  table th {
+    width: fit-content; }
+
   #details canvas {
-    width: 350px;
+    width: 100%;
     height: 300px; }
 
   .pagination {
