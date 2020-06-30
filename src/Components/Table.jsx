@@ -13,6 +13,7 @@ class Table extends React.Component {
     }
 
     visibleSortedCos() {
+        // mutation, many loops, you have complicated simple things
         let companies = this.props.companies
         .map(inc => ({id: inc.id, name: inc.name, city: inc.city, total: inc.incomes
             .map(o=>Number(o.value))
@@ -25,6 +26,7 @@ class Table extends React.Component {
         companies=companies.slice(this.props.page*10, this.props.page*10+10);
 
         let trs = [];
+        // map instead of forEach and push
         companies.forEach((el, i) => {
             trs.push(
                 <tr key={i+1} onClick={()=>this.details(el.id)}>
@@ -62,7 +64,7 @@ class Table extends React.Component {
         return(
             <div className="table">
                 {this.state.details!==0 &&
-                    <Details 
+                    <Details
                         companyData={this.props.companies.filter(x => x.id===this.state.details)[0]}
                         id={this.state.details}
                         start={this.state.start}
@@ -86,8 +88,8 @@ class Table extends React.Component {
                     }
                     </tbody>
                 </table>
-                
-                <Pagination 
+
+                <Pagination
                 page={this.props.page}
                 pageQty={this.avaliableRows/10}
                 handlePageChange={(page)=>this.props.handlePageChange(page)}
