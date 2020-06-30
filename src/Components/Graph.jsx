@@ -5,6 +5,13 @@ class Graph extends React.Component {
        super(props);
        this.canvas = React.createRef();
     }
+
+
+    // because you use life cycle methods like below in multiple places it's obvious you don't understand how it works
+    // you should learn react from scratch and before that, learn basics of js
+    // this should be extracted to the separate methods!
+    // stop using let and mutate data
+    // using if/else is in most cases anti pattern
     componentDidMount() {
         const ctx = this.canvas.current.getContext("2d");
 
@@ -39,10 +46,10 @@ class Graph extends React.Component {
 
         ctx.font = "14px Sans-serif";
         ctx.fillText("$ / T", 10, this.props.height-5)
-        
+
         let maxIncome = Math.max(...monthlyIncome.map(x=>x.total));
-        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; 
-        
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
         let i=1;
         while(i>=0) {
             ctx.beginPath();
@@ -60,7 +67,7 @@ class Graph extends React.Component {
         i=0;
         while(i<monthlyIncome.length) {
             monthlyIncome[i].x = (i/(monthlyIncome.length+1))*this.props.width+50;
-            
+
             ctx.beginPath();
             ctx.moveTo(monthlyIncome[i].x, 0);
             ctx.lineTo(monthlyIncome[i].x, this.props.height-20);
@@ -74,7 +81,7 @@ class Graph extends React.Component {
         ctx.beginPath();
         ctx.moveTo(50, Math.abs((this.props.height*(monthlyIncome[0].total/maxIncome))-this.props.height+20));
 
-        
+
         i=0;
         while(i<monthlyIncome.length) {
             ctx.fillText(months[monthlyIncome[i].month], monthlyIncome[i].x, this.props.height-5);

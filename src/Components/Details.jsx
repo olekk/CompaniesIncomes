@@ -2,22 +2,26 @@ import React from 'react';
 import Graph from './Graph.jsx'
 
 class Details extends React.Component {
-
+    // redundant, use handleRangeChange bellow
     setStartDate(event) {
         this.props.handleRangeChange(true, event.target.value);
     }
-    
+
     setEndDate(event) {
         this.props.handleRangeChange(false, event.target.value);
     }
 
     makeDetails() {
+        // you are mutating data
         let details = [];
         let companyData = this.props.companyData;
         let companyIncomes = companyData.incomes.sort((a, b)=>a.date - b.date);
 
         let makeOptions = (isStart) => {
+            // months in conant
+            // every function you wrote is not optimal and do necessary operations.
             let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            // what means o ?
             return companyIncomes.filter(o=>isStart? o.date<this.props.end : o.date>this.props.start )
             .map((o, i)=>{
                 return (
@@ -25,6 +29,9 @@ class Details extends React.Component {
                 )
             })
         }
+        // this is absolutely unreadable code. You are mutating data, every render you calculate state.
+        // you should learn how to write clean and simple code!
+        // this component should just display data instead of doing everything
         details.push(
             <>
                 Details of "{companyData.name}" <br/>

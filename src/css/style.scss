@@ -1,7 +1,7 @@
 body {
     font-family: 'K2D', sans-serif;
 }
-
+// styling using id and tags is anti pattern!
 #root {
     display: flex;
     flex-direction: column;
@@ -25,9 +25,11 @@ table {
         height: 55px;
         &:hover {
             cursor: pointer;
+            // shorthand
             box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.5);
         }
     }
+    // bad practice, better learn how to format tables and even if you want to do this like bellow, use loop in scss
     th:nth-child(1) { width: 50px; }
     th:nth-child(2) { width: 300px; }
     th:nth-child(3) { width: 150px; }
@@ -54,7 +56,7 @@ button {
     border: 2px solid black;
     line-height: 2em;
     z-index: 10;
-    
+
     left: 50%;
     top: 90px;
     transform: translate(-50%, 0);
@@ -116,7 +118,7 @@ button {
     #details {
         flex-direction: column;
         top: 10px;
-        
+
         canvas {
             width: 500px;
             height: 400px;
@@ -129,7 +131,7 @@ button {
     #details {
         flex-direction: column;
         top: 10px;
-        
+
         canvas {
             width: 400px;
             height: 320px;
