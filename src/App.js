@@ -10,28 +10,24 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let getCompanies = async () => {
-      return fetch('https://recruitment.hal.skygate.io/companies')
-        .then(res => {if(!res.ok) {throw Error(res.statusText);} return res.json()})
-        .catch(error => alert(error));
-    }
-    
-    let getIncomes = async (_id) => {
-      return fetch('https://recruitment.hal.skygate.io/incomes/'+_id)
-        .then(res => {if(!res.ok) {throw Error(res.statusText);} return res.json()})
-        .catch(error => alert(error));
-    }
-    
     let makeState = async () => {
-      let companies = await getCompanies();
-      for(let i=0; i<companies.length; i++) { //companies.length
-        let incomes = await getIncomes(companies[i].id);
+      let companies = await fetch('https://recruitment.hal.skygate.io/companies')
+        .then(res => res.json())
+        .catch(error => console.log('Error downloading companies file:', error));
+
+      let allIncomes = await Promise.all(companies.map(c => 
+          fetch('https://recruitment.hal.skygate.io/incomes/'+c.id)
+          .then(res => res.json())))
+        .catch(error => console.log('Error downloading incomes files:', error))
+         
+      
+      for(let i=0; i<companies.length; i++) {
+        let incomes = allIncomes.filter(x=>x.id===companies[i].id)[0];
         incomes.incomes.forEach(income=>{
           income.date = new Date(income.date)
         })
         companies[i].incomes = incomes.incomes;
       }
-
       return {companies: companies};
     }
 
@@ -50,7 +46,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state);
     return (
       <>
         {
